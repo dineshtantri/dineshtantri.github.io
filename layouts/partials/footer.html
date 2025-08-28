@@ -1,0 +1,42 @@
+<footer>
+  <div style="display:flex">
+    {{- range $index, $key := .Site.Params.Social -}}
+    {{- if hasPrefix $key.icon "simple:" -}}
+    <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}"><i class="si si-{{ substr $key.icon 7 }}"></i></a>
+    {{- else -}}
+    <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}">{{ template "feathericon" (dict "Icon" $key.icon "UseCDN" .Site.Params.useCDN) }}</a>
+    {{- end -}}
+    <a class="border"></a>
+    {{- end -}}
+    
+    {{/* Add RSS feed button */}}
+    <a class="soc" href="/posts/index.xml" rel="alternate" title="RSS Feed" type="application/rss+xml">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M4 11a9 9 0 0 1 9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M4 4a16 16 0 0 1 16 16" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+        <circle cx="5" cy="19" r="1" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </a>
+    <a class="border"></a>
+  </div>
+  <div class="footer-info">
+    {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} | {{ end }} <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+<style>
+/* Style the RSS button with orange color */
+.soc svg {
+  color: #ff6600; /* RSS orange color */
+  transition: color 0.3s ease;
+}
+
+.soc:hover svg {
+  color: #ff4500; /* Darker orange on hover */
+}
+</style>
+
+{{ if not hugo.IsServer }}
+{{ template "_internal/google_analytics.html" . }}
+{{ end }}
