@@ -2,7 +2,7 @@
 # This file configures the static site generator settings
 
 # Basic Site Configuration
-baseURL = "https://dineshtantri.github.io/digithos-blog/"  # GitHub Pages URL
+baseURL = "https://dineshtantri.github.io/"  # GitHub Pages root domain
 languageCode = "en-us"
 title = "Digithos"  # Site title shown in browser and header
 theme = "archie"    # Using the Archie theme for clean, minimal design
