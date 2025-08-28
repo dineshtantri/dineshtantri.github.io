@@ -1,0 +1,54 @@
+/*
+ * Custom CSS for Digithos Hugo Site - CURRENTLY NOT IN USE
+ * 
+ * IMPORTANT: This file is preserved for reference but NOT loaded by Hugo
+ * due to template fingerprinting issues that caused site rendering failures.
+ *
+ * CURRENT SOLUTION: All CSS overrides are embedded directly in layouts/index.html
+ * to bypass Hugo's asset fingerprinting system.
+ *
+ * This file demonstrates the CSS that was needed to fix theme issues:
+ */
+
+/* 
+ * PROBLEM SOLVED: Remove Archie theme's Markdown-style heading prefixes
+ * 
+ * The Archie theme intentionally adds "##", "###", etc. before headings via CSS
+ * to show the Markdown syntax visually. This was causing confusion as it looked
+ * like the Markdown wasn't being processed correctly.
+ * 
+ * Original theme CSS:
+ * h2::before { content: '## '; }
+ * h3::before { content: '### '; }
+ * 
+ * Our solution: Override with empty content using !important for specificity
+ */
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+    content: '' !important;
+}
+
+/* 
+ * Additional targeting for specific content areas
+ * Ensures the override works in different theme layouts:
+ * - article: Single post pages
+ * - .post-content: Main content area
+ */
+article h1::before,
+article h2::before,
+article h3::before,
+article h4::before,
+article h5::before,
+article h6::before,
+.post-content h1::before,
+.post-content h2::before,
+.post-content h3::before,
+.post-content h4::before,
+.post-content h5::before,
+.post-content h6::before {
+    content: '' !important;
+}

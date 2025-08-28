@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Code on Digithos</title>
+    <link>http://localhost:1313/tags/code/</link>
+    <description>Recent content in Code on Digithos</description>
+    <generator>Hugo</generator>
+    <language>en-us</language>
+    <copyright>© 2025</copyright>
+    <lastBuildDate>Thu, 28 Aug 2025 10:00:00 +0530</lastBuildDate>
+    <atom:link href="http://localhost:1313/tags/code/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Test Post</title>
+      <link>http://localhost:1313/test/</link>
+      <pubDate>Thu, 28 Aug 2025 10:00:00 +0530</pubDate>
+      <guid>http://localhost:1313/test/</guid>
+      <description>&lt;h1 id=&#34;test-post&#34;&gt;Test Post&lt;/h1&gt;&#xA;&lt;p&gt;This is a test post with some Go code:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-go&#34;&gt;package main&#xD;&#xA;&#xD;&#xA;import &amp;#34;fmt&amp;#34;&#xD;&#xA;&#xD;&#xA;func main() {&#xD;&#xA;    for i := 0; i &amp;lt; 3; i&amp;#43;&amp;#43; {&#xD;&#xA;        fmt.Println(&amp;#34;Value of i:&amp;#34;, i)&#xD;&#xA;    }&#xD;&#xA;}&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,160 @@
+{{/* 
+ * CUSTOM HOME PAGE TEMPLATE - DIGITHOS BLOG
+ * 
+ * This template completely overrides the Archie theme's default home page layout.
+ * 
+ * Key Features:
+ * - Monthly post grouping using Hugo's GroupByDate function  
+ * - Title-only display (no content summaries per user request)
+ * - Clean, minimal design matching user's reference image
+ * - Dark mode support with CSS media queries
+ * - Responsive design for mobile and desktop
+ * 
+ * Template Structure:
+ * 1. Main container with centered layout
+ * 2. "Index" title matching reference design
+ * 3. Monthly sections with grouped blog posts
+ * 4. Individual post items with title and date only
+ * 5. Embedded CSS for styling and ## symbol fix
+ */}}
+{{ define "main" }}
+<div class="home-container">
+    {{/* Main page title - matches the reference design */}}
+    <h1 class="index-title">Index</h1>
+    
+    {{/* 
+     * POST RETRIEVAL AND GROUPING LOGIC
+     * 
+     * 1. Filter site pages to get only posts from the "posts" content section
+     * 2. Use Hugo's GroupByDate function to organize posts by month
+     * 3. Date format "2006 January" produces groupings like "2025 August"
+     * 4. GroupByDate automatically sorts chronologically (newest first)
+     */}}
+    {{ $pages := where site.RegularPages "Type" "posts" }}
+    {{ range $pages.GroupByDate "2006 January" }}
+        <div class="month-section">
+            {{/* Display the month/year header (e.g., "2025 August") */}}
+            <h2 class="month-header">{{ .Key }}</h2>
+            
+            {{/* 
+             * POST ITEM RENDERING
+             * 
+             * For each post in the current month group:
+             * - Create a clickable title linking to the full post
+             * - Display formatted publication date 
+             * - NO content summaries (per user's requirement for clean layout)
+             * - Uses Hugo's .RelPermalink for proper URL generation
+             * - Date formatting: "January 2, 2006" produces "August 27, 2025"
+             */}}
+            {{ range .Pages }}
+            <div class="post-item">
+                <h3 class="post-title">
+                    <a href="{{ .RelPermalink }}">{{ .Title }}</a>
+                </h3>
+                <div class="post-meta">
+                    <span class="post-date">{{ .Date.Format "January 2, 2006" }}</span>
+                </div>
+            </div>
+            {{ end }}
+        </div>
+    {{ end }}
+</div>
+
+<style>
+.home-container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem 1rem;
+}
+
+.index-title {
+    font-size: 3rem;
+    font-weight: 300;
+    margin-bottom: 3rem;
+    color: #333;
+}
+
+.month-section {
+    margin-bottom: 4rem;
+}
+
+.month-header {
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: #666;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.post-item {
+    margin-bottom: 1.5rem;
+    padding-left: 2rem;
+}
+
+.post-title {
+    margin: 0 0 0.3rem 0;
+    font-size: 1.2rem;
+    font-weight: 400;
+    line-height: 1.4;
+}
+
+.post-title a {
+    color: #333;
+    text-decoration: none;
+    border: none;
+}
+
+.post-title a:hover {
+    color: var(--maincolor, #333);
+}
+
+.post-meta {
+    font-size: 0.85rem;
+    color: #999;
+    margin-bottom: 0;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .index-title {
+        color: #fff;
+    }
+    
+    .month-header {
+        color: #aaa;
+        border-bottom-color: #444;
+    }
+    
+    .post-title a {
+        color: #fff;
+    }
+    
+    .post-meta {
+        color: #bbb;
+    }
+}
+
+/*
+ * HOME PAGE SPECIFIC STYLING - DIGITHOS BLOG
+ * 
+ * ARCHITECTURE NOTE: 
+ * - Global CSS overrides (## symbol fix) are in layouts/partials/head.html (site-wide)
+ * - This CSS section contains ONLY home page specific styling
+ * 
+ * DESIGN APPROACH:
+ * - Clean, minimal typography inspired by user's reference image
+ * - Monthly grouping with subtle visual hierarchy
+ * - Responsive design with mobile-first approach
+ * - Dark mode support using CSS media queries
+ * 
+ * LAYOUT STRUCTURE:
+ * - .home-container: Main content wrapper with max-width and centering
+ * - .index-title: Large page title "Index" 
+ * - .month-section: Container for each month's posts
+ * - .month-header: Month/year headings with bottom border
+ * - .post-item: Individual post with title and date
+ * - .post-meta: Date styling with muted color
+ */
+</style>
+{{ end }}

@@ -1,0 +1,79 @@
+{{- define "feathericon" -}}
+  {{- $featherURL := "https://unpkg.com/feather-icons@4.29.2/dist/feather-sprite.svg" -}}
+  {{ if not (.UseCDN | default false) -}}
+    {{- $featherURL = (resources.Get "svg/feather-sprite.svg" | fingerprint).RelPermalink -}}
+  {{- end -}}
+<svg class="feather">
+   <use href="{{ printf "%s#%s" $featherURL .Icon }}" />
+</svg>
+{{- end -}}
+
+<header>
+	<div class="main">
+		<a href="{{ absLangURL "/" }}" style="display: flex; align-items: center; text-decoration: none;">
+			{{ if .Site.Params.logo }}
+			<img src="{{ .Site.Params.logo }}" alt="{{ .Site.Title }}" style="height: 40px; margin-right: 15px; border: none; outline: none;">
+			{{ end }}
+			<span>{{ .Site.Title }}</span>
+		</a>
+	</div>
+	<nav>
+		{{ range .Site.Menus.main }}
+		<a href="{{ .URL }}">{{ .Name }}</a>
+		{{ end }}
+		{{ if eq .Site.Params.mode "toggle" -}}
+	| <span id="dark-mode-toggle" onclick="toggleTheme()">{{template "feathericon" (dict "UseCDN" .Site.Params.useCDN "Icon" "sun") }}</span>
+		<script src="{{ absURL "js/themetoggle.js" }}"></script>
+		{{ end }}
+	</nav>
+</header>
+
+{{/* SITE-WIDE CSS FIX: Remove ## symbols from ALL headings on ALL pages */}}
+<style>
+/*
+ * Global CSS Override: Fixes Archie theme heading prefixes
+ * Applies to ALL pages: home, posts, about, tags, categories, etc.
+ * 
+ * Problem: Theme adds decorative Markdown symbols via CSS:
+ * h1::before { content: '# '; }
+ * h2::before { content: '## '; }
+ * 
+ * Solution: Override with empty content using !important
+ */
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+    content: '' !important;
+}
+
+/* Additional targeting for comprehensive coverage */
+article h1::before,
+article h2::before,
+article h3::before,
+article h4::before,
+article h5::before,
+article h6::before,
+.post-content h1::before,
+.post-content h2::before,
+.post-content h3::before,
+.post-content h4::before,
+.post-content h5::before,
+.post-content h6::before,
+.body h1::before,
+.body h2::before,
+.body h3::before,
+.body h4::before,
+.body h5::before,
+.body h6::before,
+main h1::before,
+main h2::before,
+main h3::before,
+main h4::before,
+main h5::before,
+main h6::before {
+    content: '' !important;
+}
+</style>

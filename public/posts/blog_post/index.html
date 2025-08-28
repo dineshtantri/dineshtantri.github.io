@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html><head lang="en"><script src="/digithos-blog/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=digithos-blog/livereload" data-no-instant defer></script>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge"><title>My First Post - Digithos</title><meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="description" content="Redis vs OpenSearch: A Real-World Performance Benchmark
+In the world of search engines, choosing the right technology can make or break your application&rsquo;s performance. Today, we&rsquo;re diving deep into a comprehensive benchmark comparing two powerhouse search solutions: Redis 8.2 (with RediSearch and RedisJSON) against OpenSearch 2.11.
+The Challenge: Real-World Geographic Search
+Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset—32,325&#43; real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through." />
+	<meta property="og:image" content=""/>
+	<meta property="og:url" content="http://localhost:1313/digithos-blog/posts/blog_post/">
+  <meta property="og:site_name" content="Digithos">
+  <meta property="og:title" content="My First Post">
+  <meta property="og:description" content="Redis vs OpenSearch: A Real-World Performance Benchmark In the world of search engines, choosing the right technology can make or break your application’s performance. Today, we’re diving deep into a comprehensive benchmark comparing two powerhouse search solutions: Redis 8.2 (with RediSearch and RedisJSON) against OpenSearch 2.11.
+The Challenge: Real-World Geographic Search Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset—32,325&#43; real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through.">
+  <meta property="og:locale" content="en_us">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="posts">
+    <meta property="article:published_time" content="2025-08-27T22:17:58+05:30">
+    <meta property="article:modified_time" content="2025-08-27T22:17:58+05:30">
+    <meta property="article:tag" content="Welcome">
+    <meta property="article:tag" content="Hugo">
+
+  <meta name="twitter:card" content="summary">
+  <meta name="twitter:title" content="My First Post">
+  <meta name="twitter:description" content="Redis vs OpenSearch: A Real-World Performance Benchmark In the world of search engines, choosing the right technology can make or break your application’s performance. Today, we’re diving deep into a comprehensive benchmark comparing two powerhouse search solutions: Redis 8.2 (with RediSearch and RedisJSON) against OpenSearch 2.11.
+The Challenge: Real-World Geographic Search Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset—32,325&#43; real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through.">
+
+        <link href="http://localhost:1313/digithos-blog/css/fonts.11a1877508139eac0b5b4852ceb110c35641b3533321e66e39149e901ed5756b.css" rel="stylesheet">
+	
+
+	
+	<link rel="stylesheet" type="text/css" media="screen" href="http://localhost:1313/digithos-blog/css/main.e08e3d47ef734c0d298ed0fb46ed50640341570139eb362f34ac2720f01a4f58.css" />
+		<link id="darkModeStyle" rel="stylesheet" type="text/css" href="http://localhost:1313/digithos-blog/css/dark.a6ecc2a65313cfac5f20a92af993901cecda7fc68011af46a4c24abe67a922f7.css" media="(prefers-color-scheme: dark)"  />
+</head>
+<body>
+        <div class="content"><header>
+	<div class="main">
+		<a href="http://localhost:1313/" style="display: flex; align-items: center; text-decoration: none;">
+			
+			<span>Digithos</span>
+		</a>
+	</div>
+	<nav>
+		
+		<a href="/digithos-blog/">Home</a>
+		
+		<a href="/digithos-blog/posts">Posts</a>
+		
+		<a href="/digithos-blog/about">About</a>
+		
+		<a href="/digithos-blog/tags">Tags</a>
+		
+		
+	</nav>
+</header>
+
+
+<style>
+ 
+h1::before,
+h2::before,
+h3::before,
+h4::before,
+h5::before,
+h6::before {
+    content: '' !important;
+}
+
+ 
+article h1::before,
+article h2::before,
+article h3::before,
+article h4::before,
+article h5::before,
+article h6::before,
+.post-content h1::before,
+.post-content h2::before,
+.post-content h3::before,
+.post-content h4::before,
+.post-content h5::before,
+.post-content h6::before,
+.body h1::before,
+.body h2::before,
+.body h3::before,
+.body h4::before,
+.body h5::before,
+.body h6::before,
+main h1::before,
+main h2::before,
+main h3::before,
+main h4::before,
+main h5::before,
+main h6::before {
+    content: '' !important;
+}
+</style>
+<main>
+  <article>
+    <div class="post-container">
+      
+      <div class="post-content">
+        <div class="title">
+          <h1 class="title">My First Post</h1>
+          <div class="meta">Posted on Aug 27, 2025</div>
+        </div>
+        
+        <section class="body">
+          <h2 id="redis-vs-opensearch-a-real-world-performance-benchmark">Redis vs OpenSearch: A Real-World Performance Benchmark</h2>
+<p>In the world of search engines, choosing the right technology can make or break your application&rsquo;s performance. Today, we&rsquo;re diving deep into a comprehensive benchmark comparing two powerhouse search solutions: Redis 8.2 (with RediSearch and RedisJSON) against OpenSearch 2.11.</p>
+<h2 id="the-challenge-real-world-geographic-search">The Challenge: Real-World Geographic Search</h2>
+<p>Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset—32,325+ real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through.</p>
+<h2 id="architecture-overview">Architecture Overview</h2>
+<h3 id="redis-setup-the-speed-demon">Redis Setup: The Speed Demon</h3>
+<ul>
+<li><strong>Engine</strong>: Redis Stack with RediSearch + RedisJSON modules</li>
+<li><strong>Storage</strong>: Memory-based with JSON document structure</li>
+<li><strong>Schema</strong>: Optimized TEXT, NUMERIC, and TAG fields</li>
+<li><strong>Key Structure</strong>: <code>city:{geonameid}</code> prefix pattern</li>
+</ul>
+<h3 id="opensearch-setup-the-full-text-powerhouse">OpenSearch Setup: The Full-Text Powerhouse</h3>
+<ul>
+<li><strong>Engine</strong>: OpenSearch 2.11.1 with Lucene backend</li>
+<li><strong>Storage</strong>: Disk-based with custom analyzers</li>
+<li><strong>Schema</strong>: Geo-point mappings with asciifolding</li>
+<li><strong>Features</strong>: Completion suggesters and advanced text analysis</li>
+</ul>
+<h2 id="the-data-pipeline">The Data Pipeline</h2>
+<p>Both engines process identical city records but optimize storage differently:</p>
+<p><strong>Redis Approach</strong>: Creates a search index (<code>cities_index</code>) with document keys like <code>city:2643743</code> for London, storing the full JSON document alongside searchable field indexes.</p>
+<p><strong>OpenSearch Approach</strong>: Uses a <code>cities</code> index with specialized geo_point fields for coordinates and custom analyzers for handling international city names with accent-folding.</p>
+<h2 id="query-patterns-apples-to-apples-comparison">Query Patterns: Apples to Apples Comparison</h2>
+<p>The benchmark tests 10 representative query patterns:</p>
+<ol>
+<li><strong>Text Search</strong>: Finding cities by name with fuzzy matching</li>
+<li><strong>Country Filters</strong>: <code>@country_code:US</code> vs country-specific queries</li>
+<li><strong>Population Ranges</strong>: <code>@population:[500000 +inf]</code> for large cities</li>
+<li><strong>Geographic Bounding Boxes</strong>: Latitude/longitude range queries</li>
+<li><strong>Complex Combinations</strong>: Multi-field filters with text search</li>
+</ol>
+<p>Both engines support equivalent functionality, but with different syntaxes—Redis uses FT.SEARCH commands while OpenSearch uses Elasticsearch DSL.</p>
+<h2 id="performance-results-the-numbers-dont-lie">Performance Results: The Numbers Don&rsquo;t Lie</h2>
+<h3 id="single-query-performance">Single Query Performance</h3>
+<ul>
+<li><strong>Redis</strong>: Sub-millisecond latencies (0.3-0.7ms average)</li>
+<li><strong>OpenSearch</strong>: 45-60ms latencies</li>
+</ul>
+<h3 id="concurrent-load-testing">Concurrent Load Testing</h3>
+<ul>
+<li><strong>Redis</strong>: 2,000-10,000 requests per second</li>
+<li><strong>OpenSearch</strong>: 200-300 requests per second</li>
+</ul>
+<h3 id="statistical-deep-dive">Statistical Deep Dive</h3>
+<p>The benchmark framework measures mean, median, P95, and P99 latencies using ThreadPoolExecutor-based load generation, providing comprehensive statistical analysis beyond simple averages.</p>
+<h2 id="when-to-choose-which">When to Choose Which?</h2>
+<h3 id="choose-redis-when">Choose Redis When:</h3>
+<ul>
+<li><strong>Ultra-low latency</strong> is critical (real-time applications)</li>
+<li>You need <strong>exact match performance</strong></li>
+<li><strong>Simple deployment</strong> is preferred</li>
+<li>Memory usage is acceptable for your dataset size</li>
+</ul>
+<h3 id="choose-opensearch-when">Choose OpenSearch When:</h3>
+<ul>
+<li><strong>Complex text analysis</strong> is required</li>
+<li>You need <strong>advanced search features</strong> (suggesters, highlighting)</li>
+<li><strong>Large datasets</strong> that don&rsquo;t fit in memory</li>
+<li><strong>Analytics and aggregations</strong> are important</li>
+</ul>
+<h2 id="the-technical-implementation">The Technical Implementation</h2>
+<p>The project provides a complete benchmarking framework with:</p>
+<pre><code class="language-bash"># Quick start
+docker-compose up -d
+pip install -r requirements.txt
+
+# Load data into both engines
+python load_cities_data.py
+python load_opensearch_data.py
+
+# Run the benchmark
+python benchmark_comparison.py --iterations 50 --concurrent-users 20</code></pre><p>Interactive demos let you test queries manually:</p>
+<pre><code class="language-bash">python search_demo.py --interactive
+python opensearch_demo.py --interactive</code></pre><h2 id="key-takeaways">Key Takeaways</h2>
+<ol>
+<li><strong>Performance Gap</strong>: Redis delivers 100x faster query response times</li>
+<li><strong>Throughput Difference</strong>: Redis handles 10-30x more concurrent requests</li>
+<li><strong>Use Case Alignment</strong>: Both excel in their intended scenarios</li>
+<li><strong>Real-World Testing</strong>: Using actual geographic data provides meaningful insights</li>
+</ol>
+<h2 id="beyond-the-benchmark">Beyond the Benchmark</h2>
+<p>This isn&rsquo;t just about raw speed—it&rsquo;s about choosing the right tool for your specific needs. Redis shines for real-time applications where every millisecond counts, while OpenSearch excels at complex search scenarios with rich text analysis and large-scale data processing.</p>
+<p>The complete benchmark suite, including all source code and datasets, demonstrates how to build comprehensive performance comparisons that go beyond marketing claims to deliver actionable insights.</p>
+<p>Whether you&rsquo;re building a location-based service, implementing search functionality, or architecting a data platform, understanding these performance characteristics helps make informed technology decisions that scale with your application&rsquo;s growth.</p>
+<hr>
+<p><em>The benchmark framework and all code are available as open source, providing a foundation for testing other search engine combinations and query patterns in your own environment.</em></p>
+
+        </section>
+        <div class="post-tags">
+          
+          
+          <nav class="nav tags">
+            <ul class="tags">
+              
+              <li><a href="/tags/welcome">welcome</a></li>
+              
+              <li><a href="/tags/hugo">hugo</a></li>
+              
+            </ul>
+          </nav>
+          
+          
+        </div>
+      </div>
+
+      
+      
+    </div>
+
+    </article>
+</main>
+<footer>
+  <div style="display:flex"><a class="soc" href="https://github.com/dineshtantri" rel="me" title="GitHub"><svg class="feather">
+   <use href="/digithos-blog/svg/feather-sprite.51cf5647cb1987f769b616558f2620fd9423d72058490231b391bf6aa3744b55.svg#github" />
+</svg></a><a class="border"></a></div>
+  <div class="footer-info">
+    2025  © 2025 |  <a
+      href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
+  </div>
+</footer>
+
+</div>
+    </body>
+</html>

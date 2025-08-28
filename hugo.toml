@@ -1,0 +1,81 @@
+# Hugo Configuration for Digithos Blog
+# This file configures the static site generator settings
+
+# Basic Site Configuration
+baseURL = "https://dineshtantri.github.io/digithos-blog/"  # GitHub Pages URL
+languageCode = "en-us"
+title = "Digithos"  # Site title shown in browser and header
+theme = "archie"    # Using the Archie theme for clean, minimal design
+copyright = "© 2025"
+
+# Code Syntax Highlighting Configuration
+# These settings control how code blocks are displayed
+pygmentsstyle = "monokai"           # Color scheme for code highlighting
+pygmentscodefences = true           # Enable highlighting for ```code``` blocks
+pygmentscodefencesguesssyntax = true  # Auto-detect language if not specified
+
+# Markdown Processing Configuration
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      # Allow raw HTML in Markdown (needed for custom styling and embeds)
+      unsafe = true
+    [markup.goldmark.parser]
+      # Auto-generate heading IDs for better navigation
+      autoHeadingID = true
+      autoHeadingIDType = "github"  # Use GitHub-style heading IDs
+
+# Cache Configuration for GitHub Pages
+[caches]
+  [caches.images]
+    dir = ":cacheDir/images"  # Required for GitHub Pages deployment
+
+# Theme-Specific Parameters
+[params]
+    # Theme color mode: "auto" follows system preference, "light", "dark", or "toggle" for manual switch
+    mode = "auto"
+    # Use CDN for fonts and assets (false = use local files for better performance)
+    useCDN = false
+    # Site subtitle shown below the main title
+    subtitle = "A minimal and clean blog powered by Hugo"
+    
+    # Custom CSS Configuration - IMPORTANT NOTES:
+    # The customcss parameter is DISABLED due to Hugo fingerprinting issues.
+    # 
+    # PROBLEM: Using customcss = ["css/custom.css"] caused template errors:
+    # "error calling fingerprint: <nil> can not be transformed"
+    #
+    # SOLUTION: Critical CSS is embedded directly in templates (layouts/index.html)
+    # This bypasses the fingerprinting system while maintaining full functionality.
+    #
+    # If you need to add more custom CSS in the future, either:
+    # 1. Embed it directly in the relevant template files, OR
+    # 2. Use Hugo's asset pipeline with proper error handling
+    #
+    # customcss = ["css/custom.css"]  # DISABLED - see above explanation
+    
+    # Optional: Add your social links
+    [[params.social]]
+    name = "GitHub"
+    icon = "github"
+    url = "https://github.com/dineshtantri"
+
+[[menu.main]]
+name = "Home"
+url = "/"
+weight = 1
+
+[[menu.main]]
+name = "Posts"
+url = "/posts"
+weight = 2
+
+[[menu.main]]
+name = "About"
+url = "/about"
+weight = 3
+
+[[menu.main]]
+name = "Tags"
+url = "/tags"
+weight = 4
