@@ -1,5 +1,37 @@
+{{/* 
+ * CUSTOM FOOTER WITH RSS INTEGRATION - DIGITHOS BLOG
+ * 
+ * This footer template overrides the Archie theme's default footer to add RSS functionality.
+ * 
+ * Key Features:
+ * - Maintains existing social media icon support from theme
+ * - Adds custom RSS feed button with standard orange styling
+ * - Uses SVG icon for RSS (from Feather Icons design system)
+ * - Proper semantic HTML with RSS-specific attributes
+ * - Responsive design matching theme aesthetic
+ * 
+ * RSS Implementation Details:
+ * - Feed URL: /posts/index.xml (blog posts only, not site-wide)
+ * - Icon: Custom RSS SVG with standard RSS symbol design
+ * - Color: #ff6600 (standard RSS orange) with #ff4500 hover
+ * - Attributes: rel="alternate" and type="application/rss+xml" for proper RSS discovery
+ * 
+ * Template Structure:
+ * 1. Social media icons (from hugo.toml [params.social] configuration)
+ * 2. Custom RSS button with orange styling
+ * 3. Footer info with copyright and theme attribution
+ * 4. Embedded CSS for RSS-specific styling
+ */}}
+
 <footer>
   <div style="display:flex">
+    {{/* 
+     * SOCIAL MEDIA ICONS SECTION
+     * 
+     * Renders social media icons configured in hugo.toml under [params.social]
+     * Supports both Simple Icons (simple: prefix) and Feather Icons
+     * Each icon gets a border separator for visual consistency
+     */}}
     {{- range $index, $key := .Site.Params.Social -}}
     {{- if hasPrefix $key.icon "simple:" -}}
     <a class="soc" href="{{ $key.url }}" rel="me" title="{{ $key.name }}"><i class="si si-{{ substr $key.icon 7 }}"></i></a>
@@ -9,7 +41,21 @@
     <a class="border"></a>
     {{- end -}}
     
-    {{/* Add RSS feed button */}}
+    {{/* 
+     * RSS FEED BUTTON
+     * 
+     * Custom RSS implementation for blog post subscriptions
+     * - href="/posts/index.xml": Links to blog posts feed (not site-wide feed)
+     * - rel="alternate": Indicates this is an alternate version of the content
+     * - type="application/rss+xml": Proper MIME type for RSS feeds
+     * - title="RSS Feed": Accessible tooltip text
+     * 
+     * SVG Icon Details:
+     * - Based on standard RSS symbol design
+     * - viewBox="0 0 24 24": Standard 24x24 icon grid
+     * - stroke="currentColor": Uses CSS color property for theming
+     * - Three elements: two curved lines and a dot (classic RSS symbol)
+     */}}
     <a class="soc" href="/posts/index.xml" rel="alternate" title="RSS Feed" type="application/rss+xml">
       <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M4 11a9 9 0 0 1 9 9" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -19,16 +65,36 @@
     </a>
     <a class="border"></a>
   </div>
+  
+  {{/* 
+   * FOOTER INFORMATION SECTION
+   * 
+   * Standard footer text with copyright, theme attribution, and Hugo credit
+   * - Uses Hugo's dateFormat function for current year
+   * - Includes site copyright from hugo.toml if configured
+   * - Links to Archie theme and Hugo for proper attribution
+   */}}
   <div class="footer-info">
     {{ dateFormat "2006" now }} {{ with .Site.Copyright }} {{ . }} | {{ end }} <a
       href="https://github.com/athul/archie">Archie Theme</a> | Built with <a href="https://gohugo.io">Hugo</a>
   </div>
 </footer>
 
+{{/* 
+ * RSS BUTTON STYLING
+ * 
+ * Custom CSS for the RSS feed button to match standard RSS conventions
+ * - Uses #ff6600: Standard RSS orange color (widely recognized)
+ * - Hover effect with #ff4500: Slightly darker orange for interaction feedback
+ * - Transition: Smooth 0.3s color change for better UX
+ * - Targets .soc svg: Matches existing social icon styling pattern
+ * 
+ * Note: This styling affects ALL svg icons in .soc elements, but since
+ * other social icons use the Feather sprite system, they override this color
+ */}}
 <style>
-/* Style the RSS button with orange color */
 .soc svg {
-  color: #ff6600; /* RSS orange color */
+  color: #ff6600; /* Standard RSS orange color */
   transition: color 0.3s ease;
 }
 
@@ -37,6 +103,13 @@
 }
 </style>
 
+{{/* 
+ * GOOGLE ANALYTICS INTEGRATION
+ * 
+ * Loads Google Analytics only in production (not during development)
+ * Uses Hugo's built-in Google Analytics template
+ * Respects hugo.IsServer to avoid tracking during local development
+ */}}
 {{ if not hugo.IsServer }}
 {{ template "_internal/google_analytics.html" . }}
 {{ end }}
