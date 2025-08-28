@@ -2,25 +2,25 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Hugo on Digithos</title>
-    <link>http://localhost:1313/digithos-blog/tags/hugo/</link>
+    <link>http://localhost:1313/tags/hugo/</link>
     <description>Recent content in Hugo on Digithos</description>
     <generator>Hugo</generator>
     <language>en-us</language>
     <copyright>© 2025</copyright>
     <lastBuildDate>Wed, 27 Aug 2025 22:17:58 +0530</lastBuildDate>
-    <atom:link href="http://localhost:1313/digithos-blog/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/tags/hugo/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>My First Post</title>
-      <link>http://localhost:1313/digithos-blog/posts/blog_post/</link>
+      <link>http://localhost:1313/posts/blog_post/</link>
       <pubDate>Wed, 27 Aug 2025 22:17:58 +0530</pubDate>
-      <guid>http://localhost:1313/digithos-blog/posts/blog_post/</guid>
+      <guid>http://localhost:1313/posts/blog_post/</guid>
       <description>&lt;h2 id=&#34;redis-vs-opensearch-a-real-world-performance-benchmark&#34;&gt;Redis vs OpenSearch: A Real-World Performance Benchmark&lt;/h2&gt;&#xA;&lt;p&gt;In the world of search engines, choosing the right technology can make or break your application&amp;rsquo;s performance. Today, we&amp;rsquo;re diving deep into a comprehensive benchmark comparing two powerhouse search solutions: Redis 8.2 (with RediSearch and RedisJSON) against OpenSearch 2.11.&lt;/p&gt;&#xA;&lt;h2 id=&#34;the-challenge-real-world-geographic-search&#34;&gt;The Challenge: Real-World Geographic Search&lt;/h2&gt;&#xA;&lt;p&gt;Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset—32,325+ real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through.&lt;/p&gt;</description>
     </item>
     <item>
       <title>My First Post</title>
-      <link>http://localhost:1313/digithos-blog/posts/my-first-post/</link>
+      <link>http://localhost:1313/posts/my-first-post/</link>
       <pubDate>Wed, 27 Aug 2025 22:17:58 +0530</pubDate>
-      <guid>http://localhost:1313/digithos-blog/posts/my-first-post/</guid>
+      <guid>http://localhost:1313/posts/my-first-post/</guid>
       <description>&lt;h1 id=&#34;welcome-to-my-blog&#34;&gt;Welcome to My Blog!&lt;/h1&gt;&#xA;&lt;p&gt;This is my first blog post using Hugo with the &lt;strong&gt;Archie&lt;/strong&gt; theme.&lt;/p&gt;&#xA;&lt;h2 id=&#34;what-is-archie&#34;&gt;What is Archie?&lt;/h2&gt;&#xA;&lt;p&gt;Archie is a minimal and clean Hugo theme that provides:&lt;/p&gt;&#xA;&lt;ul&gt;&#xA;&lt;li&gt;Clean, minimalist design&lt;/li&gt;&#xA;&lt;li&gt;Dark/light mode toggle&lt;/li&gt;&#xA;&lt;li&gt;Responsive layout&lt;/li&gt;&#xA;&lt;li&gt;Syntax highlighting&lt;/li&gt;&#xA;&lt;li&gt;Simple navigation&lt;/li&gt;&#xA;&lt;/ul&gt;&#xA;&lt;h2 id=&#34;code-example&#34;&gt;Code Example&lt;/h2&gt;&#xA;&lt;p&gt;Here&amp;rsquo;s some sample code:&lt;/p&gt;&#xA;&lt;pre&gt;&lt;code class=&#34;language-javascript&#34;&gt;function greet(name) {&#xA;    console.log(`Hello, ${name}!`);&#xA;}&#xA;&#xA;greet(&amp;#34;Hugo&amp;#34;);&lt;/code&gt;&lt;/pre&gt;&lt;p&gt;Thanks for visiting my blog!&lt;/p&gt;</description>
     </item>
   </channel>
