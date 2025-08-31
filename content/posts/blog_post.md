@@ -1,8 +1,8 @@
 +++
 date = '2025-08-27T22:17:58+05:30'
 draft = false
-title = 'My First Post'
-tags = ['welcome', 'hugo']
+title = 'Redis Versus OpenSearch'
+tags = ['search', 'performance']
 +++
 
 ## Redis vs OpenSearch: A Real-World Performance Benchmark
@@ -11,7 +11,7 @@ In the world of search engines, choosing the right technology can make or break 
 
 ## The Challenge: Real-World Geographic Search
 
-Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset—32,325+ real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through.
+Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset - 32,325+ real city records from around the world. Each record contains 19 fields including geographic coordinates, population data, administrative codes, and demographic information. This represents the kind of complex, multi-dimensional data that real applications actually search through.
 
 ## Architecture Overview
 
@@ -26,6 +26,8 @@ Instead of synthetic data, this benchmark uses the GeoNames cities15000 dataset�
 - **Storage**: Disk-based with custom analyzers
 - **Schema**: Geo-point mappings with asciifolding
 - **Features**: Completion suggesters and advanced text analysis
+
+In our case, we will run these off Docker.
 
 ## The Data Pipeline
 
@@ -106,12 +108,4 @@ python opensearch_demo.py --interactive
 
 ## Beyond the Benchmark
 
-This isn't just about raw speed—it's about choosing the right tool for your specific needs. Redis shines for real-time applications where every millisecond counts, while OpenSearch excels at complex search scenarios with rich text analysis and large-scale data processing.
-
-The complete benchmark suite, including all source code and datasets, demonstrates how to build comprehensive performance comparisons that go beyond marketing claims to deliver actionable insights.
-
-Whether you're building a location-based service, implementing search functionality, or architecting a data platform, understanding these performance characteristics helps make informed technology decisions that scale with your application's growth.
-
----
-
-*The benchmark framework and all code are available as open source, providing a foundation for testing other search engine combinations and query patterns in your own environment.*
+Redis shines for real-time applications where every millisecond counts, while OpenSearch excels at complex search scenarios with rich text analysis and large-scale data processing.

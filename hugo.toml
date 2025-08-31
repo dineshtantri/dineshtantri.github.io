@@ -4,7 +4,7 @@
 # Basic Site Configuration
 baseURL = "https://dineshtantri.github.io/"  # GitHub Pages root domain
 languageCode = "en-us"
-title = "Digithos"  # Site title shown in browser and header
+title = "DINESHTANTRI"  # Site title shown in browser and header
 theme = "archie"    # Using the Archie theme for clean, minimal design
 copyright = "© 2025"
 
@@ -61,21 +61,25 @@ pygmentscodefencesguesssyntax = true  # Auto-detect language if not specified
     url = "https://github.com/dineshtantri"
 
 [[menu.main]]
-name = "Home"
+name = "BLOG"
 url = "/"
 weight = 1
 
 [[menu.main]]
-name = "Posts"
-url = "/posts"
+name = "PROJECTS"
+url = "/projects"
 weight = 2
 
 [[menu.main]]
-name = "About"
+name = "ABOUT"
 url = "/about"
 weight = 3
 
 [[menu.main]]
-name = "Tags"
-url = "/tags"
+name = "SEARCH ⌘K"
+url = "#search"
 weight = 4
+
+# Output formats for search functionality
+[outputs]
+home = ["HTML", "RSS", "JSON"]
