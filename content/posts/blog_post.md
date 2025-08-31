@@ -109,3 +109,5 @@ python opensearch_demo.py --interactive
 ## Beyond the Benchmark
 
 Redis shines for real-time applications where every millisecond counts, while OpenSearch excels at complex search scenarios with rich text analysis and large-scale data processing.
+
+Here is the link to the repo: https://github.com/dineshtantri/redis-opensearch 
