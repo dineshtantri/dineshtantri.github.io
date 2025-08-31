@@ -76,4 +76,750 @@ main h5::before,
 main h6::before {
     content: '' !important;
 }
+
+/* 
+ * COMPREHENSIVE STYLING OVERRIDES - DIGITHOS BLOG
+ * 
+ * This section contains all custom styling that overrides the Archie theme's default behavior.
+ * These styles are placed in the HTML head for maximum specificity and immediate loading.
+ * 
+ * Key Design Principles:
+ * - Clean, minimal aesthetics with no background color changes on hover
+ * - Consistent color schemes across light and dark modes
+ * - Simple underline interactions for post titles
+ * - Light grey navigation with subtle hover effects
+ */
+
+/* BLOG TITLE LINKS - Remove background colors, use simple text color changes */
+.title a:hover,
+.post a:hover,
+h1.title a:hover,
+section.list-item h1.title a:hover,
+main.list section.list-item h1.title a:hover,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover {
+    background-color: transparent !important; /* Override theme's navy background */
+    background: none !important; /* Ensure no background variations */
+    color: #000000 !important; /* Simple black text on hover */
+}
+
+/* SITE HEADER & FOOTER LINKS - Clean hover effects without background changes */
+header .main a:hover, /* Site name/logo hover */
+.soc:hover, /* Social media icons in footer */
+footer a:hover, /* General footer links */
+.footer-info a:hover { /* Footer info section links */
+    background-color: transparent !important; /* No background color changes */
+    background: none !important; /* Ensure clean appearance */
+    color: #000000 !important; /* Simple black hover text */
+}
+
+/* NAVIGATION MENU STYLING - Light grey with subtle hover effects */
+nav a {
+    color: #999999 !important; /* Light grey for better visual hierarchy */
+    border-bottom: none; /* Remove default theme underlines */
+}
+
+nav a:hover {
+    color: #000000 !important; /* Dark text on hover for contrast */
+    background-color: transparent !important; /* No background changes */
+}
+
+/* UNDERLINE REMOVAL - Clean typography for site name and post listings */
+header .main a { /* Site name "Digithos" */
+    border-bottom: none !important; /* Remove theme's default underlines */
+    text-decoration: none !important; /* Ensure no text decoration */
+}
+
+.posts a, /* Posts page links */
+ul.posts li.post a { /* Posts list items */
+    border-bottom: none !important; /* Clean post title appearance */
+    text-decoration: none !important; /* Remove default decorations */
+}
+
+/* POST TITLE INTERACTIONS - Underline-only hover for clean UX */
+.title a:hover, /* Home page post titles */
+.post a:hover, /* Posts page titles */
+h1.title a:hover, /* H1 title elements */
+section.list-item h1.title a:hover, /* Specific home page structure */
+main.list section.list-item h1.title a:hover, /* Full selector path */
+.post-title a:hover, /* Custom post title class */
+.posts a:hover, /* Posts page links */
+ul.posts li.post a:hover { /* Posts list hover */
+    background-color: transparent !important; /* No background changes */
+    background: none !important; /* Clean hover state */
+    color: inherit !important; /* Maintain original text color */
+    text-decoration: underline !important; /* Simple underline feedback */
+    border-bottom: none !important; /* Remove theme borders */
+}
+
+/* 
+ * DARK MODE ADAPTATIONS - Consistent styling for dark theme
+ * 
+ * Maintains the same clean aesthetic principles in dark mode:
+ * - No background color changes on hover
+ * - Underline-only interactions for post titles
+ * - Appropriate color contrasts for dark backgrounds
+ */
+@media (prefers-color-scheme: dark) {
+    /* POST TITLES - Underline-only hover in dark mode */
+    .title a:hover,
+    .post a:hover,
+    h1.title a:hover,
+    section.list-item h1.title a:hover,
+    main.list section.list-item h1.title a:hover,
+    h1 a:hover,
+    h2 a:hover,
+    h3 a:hover,
+    .post-title a:hover,
+    .posts a:hover,
+    ul.posts li.post a:hover {
+        color: inherit !important; /* Maintain original text color in dark theme */
+        text-decoration: underline !important; /* Consistent underline interaction */
+    }
+    
+    /* SITE ELEMENTS - Clean hover colors for dark mode */
+    header .main a:hover, /* Site name in dark mode */
+    .soc:hover, /* Social icons */
+    footer a:hover, /* Footer links */
+    .footer-info a:hover { /* Footer info links */
+        color: #ffffff !important; /* White text for dark background contrast */
+    }
+    
+    /* NAVIGATION - Subtle grey menu with white hover in dark mode */
+    nav a {
+        color: #aaaaaa !important; /* Lighter grey for good contrast on dark bg */
+    }
+
+    nav a:hover {
+        color: #ffffff !important; /* Clean white hover for maximum readability */
+    }
+}
+
+/* 
+ * SEARCH MODAL STYLING - Ctrl+K Search Feature
+ * 
+ * Clean, modern search modal matching the site's minimal aesthetic.
+ * Features:
+ * - Dark modal overlay with centered search box
+ * - Type-ahead search through blog post titles
+ * - Keyboard navigation (Ctrl+K to open, Esc to close, arrows to navigate)
+ * - Responsive design for all screen sizes
+ */
+
+/* Search Modal Overlay */
+.search-modal {
+    display: none; /* Hidden by default */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    z-index: 9999; /* Above all other content */
+    animation: fadeIn 0.2s ease-in-out;
+}
+
+.search-modal.active {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    padding-top: 100px; /* Position from top like in screenshot */
+}
+
+/* Search Container */
+.search-container {
+    background: #ffffff; /* Light background for light mode */
+    border-radius: 8px;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+    border: 1px solid #e0e0e0;
+    width: 90%;
+    max-width: 600px;
+    max-height: 70vh;
+    overflow: hidden;
+    animation: slideIn 0.2s ease-out;
+}
+
+/* Search Input */
+.search-input-wrapper {
+    display: flex;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #e0e0e0;
+}
+
+.search-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 16px;
+    color: #666666;
+    margin-right: 12px;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.search-input {
+    background: transparent;
+    border: none;
+    outline: none;
+    color: #333333; /* Dark text for light mode */
+    font-size: 16px;
+    font-family: inherit;
+    width: 100%;
+    padding: 0;
+}
+
+.search-input::placeholder {
+    color: #999999; /* Grey placeholder for light mode */
+}
+
+.search-close {
+    background: #f0f0f0;
+    border: none;
+    color: #666666;
+    padding: 4px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+    cursor: pointer;
+    margin-left: 12px;
+}
+
+.search-close:hover {
+    background: #e0e0e0;
+    color: #333333;
+}
+
+/* Search Results */
+.search-results {
+    max-height: 400px;
+    overflow-y: auto;
+    padding: 8px 0;
+}
+
+.search-result {
+    display: block;
+    padding: 12px 24px;
+    color: #333333;
+    text-decoration: none;
+    border: none;
+    background: transparent;
+    transition: background-color 0.15s ease;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    font-family: inherit;
+    font-size: 14px;
+    line-height: 1.5;
+}
+
+.search-result:hover,
+.search-result.selected {
+    background: #f5f5f5 !important;
+    color: #000000 !important;
+}
+
+.search-result-title {
+    font-weight: 500;
+    color: #000000;
+    margin-bottom: 2px;
+}
+
+.search-result-date {
+    font-size: 12px;
+    color: #666666;
+}
+
+.search-no-results {
+    padding: 24px;
+    text-align: center;
+    color: #666666;
+    font-size: 14px;
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateY(-20px);
+        opacity: 0;
+    }
+    to {
+        transform: translateY(0);
+        opacity: 1;
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .search-modal.active {
+        padding-top: 60px;
+        padding-left: 16px;
+        padding-right: 16px;
+    }
+    
+    .search-container {
+        width: 100%;
+        max-height: 80vh;
+    }
+    
+    .search-input-wrapper {
+        padding: 16px 20px;
+    }
+    
+    .search-input {
+        font-size: 16px; /* Prevent iOS zoom */
+    }
+}
+
+/* Dark Mode Styling */
+@media (prefers-color-scheme: dark) {
+    .search-container {
+        background: #1a1a1a !important; /* Dark background for dark mode */
+        border: 1px solid #333333 !important;
+    }
+    
+    .search-input-wrapper {
+        border-bottom: 1px solid #333333 !important;
+    }
+    
+    .search-input {
+        color: #ffffff !important; /* White text for dark mode */
+    }
+    
+    .search-input::placeholder {
+        color: #666666 !important; /* Darker grey placeholder for dark mode */
+    }
+    
+    .search-icon {
+        color: #999999 !important; /* Light grey icon for dark mode */
+    }
+    
+    .search-close {
+        background: #333333 !important;
+        color: #999999 !important;
+    }
+    
+    .search-close:hover {
+        background: #444444 !important;
+        color: #cccccc !important;
+    }
+    
+    .search-result {
+        color: #ffffff !important; /* White text for dark mode */
+    }
+    
+    .search-result:hover,
+    .search-result.selected {
+        background: #2d2d2d !important; /* Dark grey hover for dark mode */
+        color: #ffffff !important;
+    }
+    
+    .search-result-title {
+        color: #ffffff !important; /* White titles for dark mode */
+    }
+    
+    .search-result-date {
+        color: #999999 !important; /* Light grey dates for dark mode */
+    }
+    
+    .search-no-results {
+        color: #999999 !important; /* Light grey no results text */
+    }
+}
+
+/* Light Mode - Explicit Styling */
+@media (prefers-color-scheme: light) {
+    .search-container {
+        background: #ffffff !important; /* White background for light mode */
+        border: 1px solid #e0e0e0 !important;
+    }
+    
+    .search-input-wrapper {
+        border-bottom: 1px solid #e0e0e0 !important;
+    }
+    
+    .search-input {
+        color: #333333 !important; /* Dark text for light mode */
+    }
+    
+    .search-input::placeholder {
+        color: #999999 !important; /* Grey placeholder for light mode */
+    }
+    
+    .search-icon {
+        color: #666666 !important; /* Dark grey icon for light mode */
+    }
+    
+    .search-close {
+        background: #f0f0f0 !important;
+        color: #666666 !important;
+    }
+    
+    .search-close:hover {
+        background: #e0e0e0 !important;
+        color: #333333 !important;
+    }
+    
+    .search-result {
+        color: #333333 !important; /* Dark text for light mode */
+    }
+    
+    .search-result:hover,
+    .search-result.selected {
+        background: #f5f5f5 !important; /* Light grey hover for light mode */
+        color: #000000 !important;
+    }
+    
+    .search-result-title {
+        color: #000000 !important; /* Black titles for light mode */
+    }
+    
+    .search-result-date {
+        color: #666666 !important; /* Grey dates for light mode */
+    }
+    
+    .search-no-results {
+        color: #666666 !important; /* Grey no results text */
+    }
+}
 </style>
+
+<!-- Search Modal HTML Structure -->
+<div id="searchModal" class="search-modal">
+    <div class="search-container">
+        <div class="search-input-wrapper">
+            <div class="search-icon">🔍</div>
+            <input 
+                type="text" 
+                id="searchInput" 
+                class="search-input" 
+                placeholder="Search blog posts or browse recent posts below..."
+                autocomplete="off"
+                autocorrect="off"
+                autocapitalize="off"
+                spellcheck="false"
+            >
+            <button class="search-close" id="searchClose">esc</button>
+        </div>
+        <div id="searchResults" class="search-results"></div>
+    </div>
+</div>
+
+<!-- Search Functionality JavaScript -->
+<script>
+/*
+ * BLOG SEARCH FUNCTIONALITY - Ctrl+K Search Feature
+ * 
+ * This script provides a fast, client-side search through blog post titles.
+ * Features:
+ * - Ctrl+K (or Cmd+K on Mac) to open search modal
+ * - Real-time type-ahead search
+ * - Keyboard navigation with arrow keys
+ * - Enter to navigate to selected post
+ * - Escape to close modal
+ * - Click outside modal to close
+ * 
+ * The search index is generated at build time from Hugo's page data.
+ */
+
+// Search index - loaded from JSON endpoint
+let searchIndex = [];
+
+// Search state
+let currentResults = [];
+let selectedIndex = -1;
+
+// DOM elements
+const searchModal = document.getElementById('searchModal');
+const searchInput = document.getElementById('searchInput');
+const searchResults = document.getElementById('searchResults');
+const searchClose = document.getElementById('searchClose');
+
+// Open search modal
+function openSearch() {
+    searchModal.classList.add('active');
+    searchInput.focus();
+    searchInput.select();
+    selectedIndex = -1;
+    document.body.style.overflow = 'hidden'; // Prevent body scroll
+    
+    // Show most recent 10 posts when modal opens
+    showRecentPosts();
+}
+
+// Close search modal
+function closeSearch() {
+    searchModal.classList.remove('active');
+    searchInput.value = '';
+    searchResults.innerHTML = '';
+    currentResults = [];
+    selectedIndex = -1;
+    document.body.style.overflow = ''; // Restore body scroll
+}
+
+// Show most recent posts (up to 10)
+function showRecentPosts() {
+    // Sort posts by date (most recent first) and take first 10
+    currentResults = searchIndex
+        .slice() // Create a copy to avoid mutating the original
+        .sort((a, b) => new Date(b.dateISO || b.date) - new Date(a.dateISO || a.date))
+        .slice(0, 10);
+    
+    selectedIndex = currentResults.length > 0 ? 0 : -1;
+    renderResults();
+    console.log(`Showing ${currentResults.length} recent posts`);
+}
+
+// Perform search
+function performSearch(query) {
+    const normalizedQuery = query.toLowerCase().trim();
+    
+    // If no query, show recent posts instead
+    if (!normalizedQuery) {
+        showRecentPosts();
+        return;
+    }
+    
+    // Debug logging
+    console.log(`Searching for: "${normalizedQuery}"`);
+    console.log(`Search index contains ${searchIndex.length} posts`);
+    
+    // Search through post titles and tags
+    currentResults = searchIndex.filter(post => {
+        const titleMatch = post.title.toLowerCase().includes(normalizedQuery);
+        const tagMatch = post.tags && post.tags.some(tag => 
+            tag.toLowerCase().includes(normalizedQuery)
+        );
+        return titleMatch || tagMatch;
+    });
+    
+    console.log(`Found ${currentResults.length} results`);
+    selectedIndex = currentResults.length > 0 ? 0 : -1;
+    renderResults();
+}
+
+// Render search results
+function renderResults() {
+    if (currentResults.length === 0) {
+        searchResults.innerHTML = '<div class="search-no-results">No blog posts found</div>';
+        return;
+    }
+    
+    const resultsHTML = currentResults.map((result, index) => `
+        <button class="search-result ${index === selectedIndex ? 'selected' : ''}" 
+                data-index="${index}" 
+                data-url="${result.url}">
+            <div class="search-result-title">${result.title}</div>
+            <div class="search-result-date">${result.date}</div>
+        </button>
+    `).join('');
+    
+    searchResults.innerHTML = resultsHTML;
+    
+    // Add click listeners to results
+    searchResults.querySelectorAll('.search-result').forEach((element, index) => {
+        element.addEventListener('click', () => navigateToResult(index));
+    });
+}
+
+// Navigate to selected result
+function navigateToResult(index) {
+    if (index >= 0 && index < currentResults.length) {
+        window.location.href = currentResults[index].url;
+    }
+}
+
+// Update selected result highlight
+function updateSelection() {
+    searchResults.querySelectorAll('.search-result').forEach((element, index) => {
+        element.classList.toggle('selected', index === selectedIndex);
+    });
+    
+    // Scroll selected item into view
+    if (selectedIndex >= 0) {
+        const selectedElement = searchResults.querySelector('.selected');
+        if (selectedElement) {
+            selectedElement.scrollIntoView({
+                behavior: 'smooth',
+                block: 'nearest'
+            });
+        }
+    }
+}
+
+// Keyboard event handlers
+document.addEventListener('keydown', (event) => {
+    // Ctrl+K or Cmd+K to open search (only when modal is closed)
+    if ((event.ctrlKey || event.metaKey) && event.key === 'k' && !searchModal.classList.contains('active')) {
+        event.preventDefault();
+        openSearch();
+        return;
+    }
+    
+    // Only handle these keys when search modal is open
+    if (!searchModal.classList.contains('active')) return;
+    
+    switch (event.key) {
+        case 'Escape':
+            event.preventDefault();
+            closeSearch();
+            break;
+            
+        case 'ArrowDown':
+            event.preventDefault();
+            if (currentResults.length > 0) {
+                selectedIndex = (selectedIndex + 1) % currentResults.length;
+                updateSelection();
+            }
+            break;
+            
+        case 'ArrowUp':
+            event.preventDefault();
+            if (currentResults.length > 0) {
+                selectedIndex = selectedIndex <= 0 ? currentResults.length - 1 : selectedIndex - 1;
+                updateSelection();
+            }
+            break;
+            
+        case 'Enter':
+            event.preventDefault();
+            if (selectedIndex >= 0) {
+                navigateToResult(selectedIndex);
+            }
+            break;
+    }
+});
+
+// Search input event listener
+searchInput.addEventListener('input', (event) => {
+    performSearch(event.target.value);
+});
+
+// Close button event listener
+searchClose.addEventListener('click', closeSearch);
+
+// Click outside modal to close
+searchModal.addEventListener('click', (event) => {
+    if (event.target === searchModal) {
+        closeSearch();
+    }
+});
+
+// Prevent modal content clicks from closing modal
+document.querySelector('.search-container').addEventListener('click', (event) => {
+    event.stopPropagation();
+});
+
+// Load search index from JSON
+async function loadSearchIndex() {
+    try {
+        const response = await fetch('/index.json');
+        if (response.ok) {
+            searchIndex = await response.json();
+            console.log(`Blog search initialized with ${searchIndex.length} posts. Press Ctrl+K to search.`);
+        } else {
+            console.error('Failed to load search index');
+        }
+    } catch (error) {
+        console.error('Error loading search index:', error);
+    }
+}
+
+// Theme toggle functionality
+function initThemeToggle() {
+    const themeToggle = document.getElementById('themeToggle');
+    const sunIcon = themeToggle?.querySelector('.sun-icon');
+    const moonIcon = themeToggle?.querySelector('.moon-icon');
+    
+    if (!themeToggle || !sunIcon || !moonIcon) return;
+    
+    // Check for saved theme or default to system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    let currentTheme = savedTheme || (systemPrefersDark ? 'dark' : 'light');
+    
+    // Apply theme
+    function applyTheme(theme) {
+        document.documentElement.setAttribute('data-theme', theme);
+        
+        if (theme === 'dark') {
+            sunIcon.style.display = 'none';
+            moonIcon.style.display = 'block';
+        } else {
+            sunIcon.style.display = 'block';
+            moonIcon.style.display = 'none';
+        }
+        
+        // Override CSS media queries with explicit theme
+        const style = document.createElement('style');
+        style.id = 'theme-override';
+        const existingOverride = document.getElementById('theme-override');
+        if (existingOverride) {
+            existingOverride.remove();
+        }
+        
+        if (theme === 'dark') {
+            style.innerHTML = `
+                * { color-scheme: dark !important; }
+                body { background-color: #1a1a1a !important; color: #ffffff !important; }
+                .search-container { background: #1a1a1a !important; border: 1px solid #333333 !important; }
+                .search-input { color: #ffffff !important; }
+                .search-input::placeholder { color: #666666 !important; }
+                .search-result { color: #ffffff !important; }
+                .search-result:hover { background: #2d2d2d !important; }
+                .search-result-title { color: #ffffff !important; }
+                .search-result-date { color: #999999 !important; }
+            `;
+        } else {
+            style.innerHTML = `
+                * { color-scheme: light !important; }
+                body { background-color: #ffffff !important; color: #000000 !important; }
+                .search-container { background: #ffffff !important; border: 1px solid #e0e0e0 !important; }
+                .search-input { color: #333333 !important; }
+                .search-input::placeholder { color: #999999 !important; }
+                .search-result { color: #333333 !important; }
+                .search-result:hover { background: #f5f5f5 !important; }
+                .search-result-title { color: #000000 !important; }
+                .search-result-date { color: #666666 !important; }
+            `;
+        }
+        
+        document.head.appendChild(style);
+    }
+    
+    // Toggle theme function
+    function toggleTheme() {
+        currentTheme = currentTheme === 'dark' ? 'light' : 'dark';
+        localStorage.setItem('theme', currentTheme);
+        applyTheme(currentTheme);
+    }
+    
+    // Initialize theme
+    applyTheme(currentTheme);
+    
+    // Add click listener
+    themeToggle.addEventListener('click', toggleTheme);
+}
+
+// Initialize search when page loads
+document.addEventListener('DOMContentLoaded', () => {
+    loadSearchIndex();
+    initThemeToggle();
+    
+    // Handle search menu item clicks
+    const searchMenuItems = document.querySelectorAll('nav a[href="#search"]');
+    searchMenuItems.forEach(item => {
+        item.addEventListener('click', (event) => {
+            event.preventDefault(); // Prevent default anchor behavior
+            openSearch(); // Open the search modal
+        });
+    });
+});
+</script>

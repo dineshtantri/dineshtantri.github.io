@@ -53,6 +53,14 @@
                 </h3>
                 <div class="post-meta">
                     <span class="post-date">{{ .Date.Format "January 2, 2006" }}</span>
+                    {{ if .Params.tags }}
+                        <span class="post-tags">
+                            {{ range $index, $tag := .Params.tags }}
+                                {{ if gt $index 0 }}, {{ end }}
+                                <a href="/tags/{{ $tag | urlize }}/" class="tag">{{ $tag }}</a>
+                            {{ end }}
+                        </span>
+                    {{ end }}
                 </div>
             </div>
             {{ end }}
@@ -85,11 +93,14 @@
     margin-bottom: 2rem;
     padding-bottom: 0.5rem;
     border-bottom: 1px solid #eee;
+    
 }
 
 .post-item {
     margin-bottom: 1.5rem;
     padding-left: 2rem;
+    padding-right: 2rem; /* ADD THIS LINE */
+    text-align: right; /* ADD THIS LINE */
 }
 
 .post-title {
@@ -106,7 +117,8 @@
 }
 
 .post-title a:hover {
-    color: var(--maincolor, #333);
+    color: inherit;
+    text-decoration: underline;
 }
 
 .post-meta {
@@ -114,6 +126,32 @@
     color: #999;
     margin-bottom: 0;
 }
+
+.post-tags {
+    margin-left: 0.5rem; /* Reduced from 1rem for tighter spacing between date and tags */
+}
+
+.post-tags::before {
+    content: '- '; /* Changed from bullet point to dash separator for cleaner appearance */
+    color: #ccc;
+    margin-right: 0.3rem; /* Reduced from 0.5rem for tighter spacing */
+}
+
+.tag {
+    color: #666;
+    text-decoration: none !important;
+    border-bottom: none !important;
+    font-size: 0.8rem;
+    transition: color 0.2s ease;
+}
+
+.tag:hover {
+    color: #333;
+    background-color: transparent !important;
+    text-decoration: none !important;
+    border-bottom: none !important;
+}
+
 
 /* Dark mode support */
 @media (prefers-color-scheme: dark) {
@@ -133,6 +171,22 @@
     .post-meta {
         color: #bbb;
     }
+    
+    .post-tags::before {
+        color: #555;
+    }
+    
+    .tag {
+        color: #aaa;
+    }
+    
+    .tag:hover {
+        color: #ddd;
+        background-color: transparent !important;
+        text-decoration: none !important;
+        border-bottom: none !important;
+    }
+    
 }
 
 /*
