@@ -1,0 +1,7 @@
+{{- $posts := slice -}}
+{{- range (where .Site.RegularPages "Section" "posts") -}}
+  {{- if not .Draft -}}
+    {{- $posts = $posts | append (dict "title" .Title "url" .RelPermalink "date" (.Date.Format "January 2, 2006") "dateISO" (.Date.Format "2006-01-02T15:04:05Z07:00") "tags" .Params.tags) -}}
+  {{- end -}}
+{{- end -}}
+{{- $posts | jsonify -}}
