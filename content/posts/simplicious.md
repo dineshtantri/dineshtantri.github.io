@@ -1,6 +1,6 @@
 ---
-title: "Your Post Title"
-date: 2025-12-04
+title: "Bookmarking Tool - Vibe Coding"
+date: 2024-12-24
 draft: false
 ---
 
