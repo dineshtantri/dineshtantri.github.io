@@ -62,7 +62,6 @@ Back in the day, I used Delicious quite a bit for social bookmarking until they 
 
 * Chrome extension for quick bookmarking
 * Extension popup with:
-
   * Title auto-fill from current page
 
 ---
