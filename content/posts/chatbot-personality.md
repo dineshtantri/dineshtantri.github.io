@@ -1,5 +1,5 @@
 ---
-title: "Infusing Persoanlity To Chatbots"
+title: "Infusing Personality In Chatbots"
 date: 2025-09-15
 draft: false
 ---
