@@ -1,4 +1,10 @@
-A small learning experiment with Replit - சொல் is a mobile responsive web app that converts Tamil speech into structured prompts for ChatGPT and Claude. Users can record their ideas in Tamil and get structured prompts. If you are a student trying to vibe code and want to generate quality prompts by just speaking out your requirements in Tamil, you will hopefully like சொல். Try here: <https://lnkd.in/gT7agb_c>
+---
+title: "Tamil Voice To English Prompt" - Vibe Coding"
+date: 2025-08-10"
+draft: false
+---
+
+A small learning experiment with Replit - சொல் is a mobile responsive web app that converts Tamil speech into structured prompts for ChatGPT and Claude. Users can record their ideas in Tamil and get structured prompts. If you are a student trying to vibe code and want to generate quality prompts by just speaking out your requirements in Tamil, you will hopefully like சொல். 
 
 ![screenshot](/static/images/1753418403664.jfif)
 
