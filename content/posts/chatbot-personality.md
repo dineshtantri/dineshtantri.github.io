@@ -1,5 +1,5 @@
 ---
-title: "Bookmarking Tool - Vibe Coding"
+title: "Infusing Persoanlity To Chatbots"
 date: 2025-09-15
 draft: false
 ---
