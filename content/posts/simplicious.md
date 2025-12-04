@@ -1,3 +1,4 @@
++++ date = '2025-12-04T22:17:58+05:30' draft = false title = 'Vibe Coding A Bookmarking System' tags = ['bookmarking', 'vibecoding'] +++
 Over the past year or so that I have been playing around with Replit, it has been truly empowering. I have been able to build and deploy mini applications for my own use in days. The Replit AI agent for slightly involved back and forth and the AI assistant for simpler tasks have been great by and large. As long as you can write your requirements well and refine them and debug patiently, Replit does the trick. I'm unable to comment on the code quality though. My friend Ritesh Nayak had recently written a post about his experience from developer perspective.
 
 ![screenshot](/static/images/1735043628793.png)
